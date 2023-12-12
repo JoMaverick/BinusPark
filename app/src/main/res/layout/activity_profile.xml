@@ -6,15 +6,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-
-    android:paddingTop="60dp"
-    android:paddingBottom="20dp"
+    android:layout_margin="20dp"
 
     tools:context=".MainActivity">
+
     <ImageButton
+        android:id="@+id/back"
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:src="@drawable/ic_action_back"
@@ -56,6 +53,7 @@
         android:textColor="@color/gray"/>
 
         <EditText
+            android:id="@+id/full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -73,6 +71,7 @@
             android:textColor="@color/gray"/>
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -80,7 +79,8 @@
             android:text="@string/profile_data2"
             android:hint="@string/email"
             android:autofillHints="Email Address"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:enabled="false"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -90,6 +90,8 @@
             android:textColor="@color/gray"/>
 
         <EditText
+            android:enabled="false"
+            android:id="@+id/phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -97,7 +99,8 @@
             android:text="@string/profile_data3"
             android:hint="@string/phone"
             android:autofillHints="Phone number"
-            android:inputType="number"/>
+            android:inputType="phone"
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -107,6 +110,7 @@
             android:textColor="@color/gray"/>
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -119,10 +123,20 @@
          </LinearLayout>
 
     <Button
+        android:id="@+id/profile_update"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:text="@string/edit"
         android:backgroundTint="@color/purple"
+        />
+    <TextView
+        android:id="@+id/logout_button"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/logout"
         />
 
 

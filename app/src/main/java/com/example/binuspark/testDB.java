@@ -29,10 +29,10 @@ public class testDB extends AppCompatActivity {
     }
 
     public void passUserData(){
-        String userUsername = "tahugoreng";
+        String userUsername = "Jonathan Maverick";
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
+        Query checkUserDatabase = reference.orderByChild("name").equalTo(userUsername);
 
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -41,6 +41,8 @@ public class testDB extends AppCompatActivity {
 
                     String nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
                     tv.setText(nameFromDB);
+                }else{
+                    tv.setText("Ga bisa cuy");
                 }
             }
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">BinusPark</string>
-    <string name="back_button">button for back</string>
+    <string name="back_button">Press for previous page</string>
     <string name="profile_title">User Profile</string>\
     <string name="profile_dataT1">Full name</string>
     <string name="profile_data1">Amanda Chase</string>
@@ -16,7 +16,9 @@
     <string name="password">Password</string>
     <string name="edit">Edit</string>
     <string name="edit1">Save</string>
+    <string name="logout">Log out</string>
     <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_university_list">UniversityList</string>
     <string name="title_home">Home</string>
