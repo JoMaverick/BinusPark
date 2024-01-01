@@ -1,32 +1,51 @@
 package com.example.binuspark;
 
-import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.Query;
 
 public class FirebaseUtil {
 
-    public static String currentUserId(){
-        return FirebaseAuth.getInstance().getUid();
+    public static DatabaseReference usersReference() {
+        return FirebaseDatabase.getInstance().getReference().child("users");
     }
 
-
-    public static DocumentReference currentUserDetails(){
-        return FirebaseFirestore.getInstance().collection("users").document(currentUserId());
+    public interface UserDetailListener {
+        void onUserDetail(DataSnapshot dataSnapshot);
+        void onError(DatabaseError databaseError);
+        void onUserNotFound();
     }
 
+    public static void currentUserDetails(String userEmail, FirebaseUtil.UserDetailListener listener) {
+        DatabaseReference usersRef = usersReference();
+        Query query = usersRef.orderByChild("email").equalTo(userEmail);
 
-    public static void logout(){
-        FirebaseAuth.getInstance().signOut();
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        if (listener != null) {
+                            listener.onUserDetail(userSnapshot);
+                            return; // Stop after finding the user
+                        }
+                    }
+                } else {
+                    if (listener != null) {
+                        listener.onUserNotFound();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                if (listener != null) {
+                    listener.onError(databaseError);
+                }
+            }
+        });
     }
-
-
-
 }

@@ -104,16 +104,16 @@ public class Login extends AppCompatActivity {
 
                         //Pass the data using intent
 
-//                        String nameFromDB = snapshot.child(userEmail).child("name").getValue(String.class);
-//                        String emailFromDB = snapshot.child(userEmail).child("email").getValue(String.class);
-//                        String usernameFromDB = snapshot.child(userEmail).child("username").getValue(String.class);
+                        String nameFromDB = snapshot.child(userEmail).child("name").getValue(String.class);
+                        String emailFromDB = snapshot.child(userEmail).child("email").getValue(String.class);
+                        String usernameFromDB = snapshot.child(userEmail).child("username").getValue(String.class);
 
                         Intent intent = new Intent(Login.this, MainActivity2.class);
 
-//                        intent.putExtra("name", nameFromDB);
-//                        intent.putExtra("email", emailFromDB);
-//                        intent.putExtra("username", usernameFromDB);
-//                        intent.putExtra("password", passwordFromDB);
+                        intent.putExtra("name", nameFromDB);
+                        intent.putExtra("email", emailFromDB);
+                        intent.putExtra("username", usernameFromDB);
+                        intent.putExtra("password", passwordFromDB);
 
                         startActivity(intent);
                     } else {
@@ -133,4 +133,6 @@ public class Login extends AppCompatActivity {
 
         });
     }
+
+
 }
